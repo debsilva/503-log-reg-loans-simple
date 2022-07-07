@@ -10,7 +10,7 @@ myheading1='Predicting Mortgage Loan Approval'
 image1='assets/rocauc.html'
 tabtitle = 'Loan Prediction'
 sourceurl = 'https://datahack.analyticsvidhya.com/contest/practice-problem-loan-prediction-iii/'
-githublink = 'https://github.com/plotly-dash-apps/503-log-reg-loans-simple'
+githublink = 'https://github.com/debsilva/503-log-reg-loans-simple'
 
 ########### open the json file ######
 with open('assets/rocauc.json', 'r') as f:
@@ -45,6 +45,10 @@ app.layout = html.Div(children=[
                 dcc.Input(id='Loan_Amount_Term', value=360, type='number', min=120, max=480, step=10),
                 html.Div('Applicant Income (in dollars)'),
                 dcc.Input(id='ApplicantIncome', value=5000, type='number', min=0, max=100000, step=500),
+                html.Div('Gender (1 for female, 0 for male)'),
+                dcc.Input(id='Gender', value=1, type='number', min=0, max=1, step=1),
+                html.Div('Education (1 for graduate, 0 for non-graduate)'),
+                dcc.Input(id='Education', value=1, type='number', min=0, max=1, step=1),
                 html.Div('Probability Threshold for Loan Approval'),
                 dcc.Input(id='Threshold', value=50, type='number', min=0, max=100, step=1),
 
@@ -82,6 +86,8 @@ app.layout = html.Div(children=[
      Input(component_id='LoanAmount', component_property='value'),
      Input(component_id='Loan_Amount_Term', component_property='value'),
      Input(component_id='ApplicantIncome', component_property='value'),
+     Input(component_id='Gender', component_property='value'),
+     Input(component_id='Education', component_property='value'),
      Input(component_id='Threshold', component_property='value')
     ])
 def prediction_function(Credit_History, LoanAmount, Loan_Amount_Term, ApplicantIncome, Threshold):
