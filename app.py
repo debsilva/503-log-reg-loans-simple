@@ -90,9 +90,11 @@ app.layout = html.Div(children=[
      Input(component_id='Education', component_property='value'),
      Input(component_id='Threshold', component_property='value')
     ])
-def prediction_function(Credit_History, LoanAmount, Loan_Amount_Term, ApplicantIncome, Threshold):
+def prediction_function(Credit_History, LoanAmount, Loan_Amount_Term, ApplicantIncome, Gender,
+                        Education, Threshold):
     try:
-        data = [[Credit_History, LoanAmount, Loan_Amount_Term, ApplicantIncome]]
+        data = [[Credit_History, LoanAmount, Loan_Amount_Term, ApplicantIncome,
+                Gender, Education]]
         rawprob=100*unpickled_model.predict_proba(data)[0][1]
         func = lambda y: 'Approved' if int(rawprob)>Threshold else 'Denied'
         formatted_y = func(rawprob)
